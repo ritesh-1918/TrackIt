@@ -153,22 +153,42 @@ function registerCommands() {
             case 'DASHBOARD':
                 const dashboardUrl = process.env.DASHBOARD_URL || 'http://localhost:5173';
                 const magicLink = `${dashboardUrl}/?user_id=${query.from.id}`;
+                const isLocal = dashboardUrl.includes('localhost') || dashboardUrl.includes('127.0.0.1');
 
-                await bot.sendMessage(chatId,
-                    `📊 <b>TrackIt Dashboard</b>\n\n` +
-                    `Click the button below to view your products, price history charts, and trends on the web!\n\n` +
-                    `<i>(Link valid for your account only)</i>`,
-                    {
-                        parse_mode: 'HTML',
-                        reply_markup: {
-                            inline_keyboard: [
-                                [{ text: '🚀 Open Dashboard', url: magicLink }],
-                                [{ text: '❌ Close', callback_data: 'CLOSE' }]
-                            ]
+                if (isLocal) {
+                    // Localhost: Send link in text (Buttons don't support localhost)
+                    await bot.sendMessage(chatId,
+                        `📊 <b>TrackIt Dashboard</b>\n\n` +
+                        `Use this link to access your local dashboard:\n` +
+                        `<a href="${magicLink}">🚀 Open Dashboard</a>\n\n` +
+                        `<i>(Link valid for your account only)</i>`,
+                        {
+                            parse_mode: 'HTML',
+                            // No inline button for link, just close
+                            reply_markup: {
+                                inline_keyboard: [
+                                    [{ text: '❌ Close', callback_data: 'CLOSE' }]
+                                ]
+                            }
                         }
-                    }
-                );
-                // Also verify user exists in DB to be safe (though bot is open)
+                    );
+                } else {
+                    // Production: Use inline button
+                    await bot.sendMessage(chatId,
+                        `📊 <b>TrackIt Dashboard</b>\n\n` +
+                        `Click the button below to view your products, price history charts, and trends on the web!\n\n` +
+                        `<i>(Link valid for your account only)</i>`,
+                        {
+                            parse_mode: 'HTML',
+                            reply_markup: {
+                                inline_keyboard: [
+                                    [{ text: '🚀 Open Dashboard', url: magicLink }],
+                                    [{ text: '❌ Close', callback_data: 'CLOSE' }]
+                                ]
+                            }
+                        }
+                    );
+                }
                 break;
 
             case 'UPGRADE':

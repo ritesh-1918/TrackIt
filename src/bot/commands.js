@@ -482,7 +482,7 @@ async function handleHelp(bot, msg) {
 • Amazon.com 🇺🇸
 
 <b>🔹 Free Plan Limits:</b>
-• Track up to ${FREE_PRODUCT_LIMIT} product
+• Track up to ${PLANS.FREE.maxProducts} products
 • Weekly price checks
 
 <i>💡 Tip: Track products before sales for maximum savings!</i>
