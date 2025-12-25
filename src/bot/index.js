@@ -208,6 +208,10 @@ function registerCommands() {
                 }
                 break;
 
+            case 'PLANS':
+                await commands.handlePlans(bot, msg);
+                break;
+
             case 'UPGRADE':
                 // Show plans instead of immediate upgrade for better UX
                 await commands.handlePlans(bot, msg);
