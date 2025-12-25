@@ -93,6 +93,22 @@ function registerCommands() {
     // /downgrade - Downgrade to FREE plan
     bot.onText(/\/downgrade/, (msg) => commands.handleDowngrade(bot, msg));
 
+    // Handle incoming messages for direct Amazon links
+    bot.on('message', async (msg) => {
+        const text = msg.text || '';
+
+        // Ignore if it's a command (handled by onText) or empty
+        if (!text || text.startsWith('/')) return;
+
+        // Check for Amazon URLs
+        if (text.includes('amazon.in') || text.includes('amazon.com') || text.includes('amzn.in') || text.includes('amzn.to')) {
+            // Treat as /track command
+            // handleTrack expects (bot, msg, match) where match[1] is the URL
+            console.log(`🔗 Detected direct link from ${msg.from.username || msg.from.id}`);
+            await commands.handleTrack(bot, msg, [text, text]);
+        }
+    });
+
     // Handle callback queries (Inline Buttons)
     bot.on('callback_query', async (query) => {
         const chatId = query.message.chat.id;
