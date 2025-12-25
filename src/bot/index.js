@@ -151,7 +151,8 @@ function registerCommands() {
                 break;
 
             case 'DASHBOARD':
-                const dashboardUrl = process.env.DASHBOARD_URL || 'http://localhost:5173';
+                // Default to live Netlify URL if env var is not set
+                const dashboardUrl = process.env.DASHBOARD_URL || 'https://trackit1918.netlify.app';
                 const magicLink = `${dashboardUrl}/?user_id=${query.from.id}`;
                 const isLocal = dashboardUrl.includes('localhost') || dashboardUrl.includes('127.0.0.1');
 
