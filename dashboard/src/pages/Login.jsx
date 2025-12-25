@@ -33,7 +33,7 @@ function Login() {
                     <div className="method bot-method">
                         <h3>🤖 Recommended</h3>
                         <p>Open the TrackIt Telegram bot and click the <b>"📊 Dashboard"</b> button to auto-login.</p>
-                        <a href="https://t.me/TrackIt_Bot" target="_blank" rel="noopener noreferrer" className="btn-bot">
+                        <a href="https://t.me/TrackIt1918bot" target="_blank" rel="noopener noreferrer" className="btn-bot">
                             Open Telegram Bot ↗
                         </a>
                     </div>
