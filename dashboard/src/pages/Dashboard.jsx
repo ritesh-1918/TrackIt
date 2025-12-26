@@ -3,7 +3,7 @@ import Header from '../components/Header';
 import ProductCard from '../components/ProductCard';
 import { fetchDashboardData } from '../services/api';
 
-function Dashboard() {
+function Dashboard({ onLogout }) {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -57,7 +57,7 @@ function Dashboard() {
 
     return (
         <div className="dashboard">
-            <Header user={data.user} />
+            <Header user={data.user} onLogout={onLogout} />
 
             <main className="container">
                 <section className="stats-bar">

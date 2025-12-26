@@ -30,11 +30,21 @@ function App() {
     setChecking(false);
   }, []);
 
+  const handleLogout = () => {
+    localStorage.removeItem('trackit_user_id');
+    // Remove query param without reloading
+    const url = new URL(window.location);
+    url.searchParams.delete('user_id');
+    window.history.pushState({}, '', url);
+
+    setIsAuthenticated(false);
+  };
+
   if (checking) return null; // Or a loading spinner
 
   return (
     <div className="app">
-      {isAuthenticated ? <Dashboard /> : <Login />}
+      {isAuthenticated ? <Dashboard onLogout={handleLogout} /> : <Login />}
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from '../assets/logo.png';
 
-function Header({ user }) {
+function Header({ user, onLogout }) {
     if (!user) return null;
 
     const isPro = user.plan === 'PRO';
@@ -18,6 +18,9 @@ function Header({ user }) {
                     <span className={`plan-badge ${isPro ? 'pro' : 'free'}`}>
                         {user.planName || user.plan} PLAN
                     </span>
+                    <button className="btn-logout" onClick={onLogout} title="Logout">
+                        Logout
+                    </button>
                 </div>
             </div>
         </header>

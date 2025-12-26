@@ -91,6 +91,24 @@ body {
   color: var(--primary);
 }
 
+.btn-logout {
+  margin-left: 0.5rem;
+  padding: 0.35rem 0.75rem;
+  border: 1px solid var(--border);
+  background: transparent;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: 0.85rem;
+  color: var(--text-light);
+  transition: all 0.2s;
+}
+
+.btn-logout:hover {
+  background: #fee2e2;
+  color: #ef4444;
+  border-color: #fecaca;
+}
+
 /* Dashboard Stats */
 .stats-bar {
   margin-bottom: 2rem;
