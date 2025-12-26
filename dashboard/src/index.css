@@ -25,6 +25,13 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+.logo-img {
+  height: 40px;
+  width: auto;
+  margin-right: 12px;
+  vertical-align: middle;
+}
+
 .container {
   max-width: 1200px;
   margin: 0 auto;

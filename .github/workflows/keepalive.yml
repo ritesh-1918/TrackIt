@@ -1,0 +1,16 @@
+name: Keep Alive
+
+on:
+  schedule:
+    - cron: '*/14 * * * *' # Run every 14 minutes to avoid 15-min inactivity sleep
+  workflow_dispatch: # Allow manual triggering
+
+jobs:
+  keep-alive:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Health Endpoint
+        run: |
+          # Replace the URL below with your actual deployed Render backend URL
+          # Example: https://trackit.onrender.com/health
+          curl -I "https://trackit-backend-58ys.onrender.com/health"
