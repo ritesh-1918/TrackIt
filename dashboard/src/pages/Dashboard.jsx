@@ -49,7 +49,12 @@ function Dashboard({ onLogout }) {
                 <div className="error-card">
                     <h2>⚠️ Access Error</h2>
                     <p>{error}</p>
-                    <button onClick={() => window.location.reload()}>Try Again</button>
+                    <div className="error-actions">
+                        <button onClick={() => window.location.reload()}>Try Again</button>
+                        <button className="btn-secondary" onClick={onLogout} style={{ marginLeft: '10px', background: '#e2e8f0', color: '#1e293b' }}>
+                            Reset Session
+                        </button>
+                    </div>
                 </div>
             </div>
         );
